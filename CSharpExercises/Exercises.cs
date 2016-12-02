@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace CSharpExercises
 {
@@ -17,13 +18,63 @@ namespace CSharpExercises
 
         /* Alright - your turn now! */
 
-        // 1. Create a method called SayHello that accepts a string representing a name and returns a welcome message (E.g. "Hello John!")
+        // 1. Create a method called SayHello that accepts a string representing a name and 
+        //returns a welcome message (E.g. "Hello John!")
+        public static string SayHello(string name)
+        {
+            return "Hello " + name + "!";
+        }
+
         // 2. Create a method called Sum that accepts two integers and returns their sum.
+        public static int Sum(int number1, int number2)
+        {
+            return number1 + number2;
+        }
         // 3. Create a method called Divide that accepts two decimals and returns the result of dividing the two numbers as a decimal.
+        public static float Divide(float dec1, float dec2)
+        {
+            return dec1 / dec2;
+        }
         // 4. Create a method called CanOpenCheckingAccount that accepts an integer representing a customers age, returning true if the age is greater than or equal to 18, or false if the argument is less than 18.
+        public static bool CanOpenCheckingAccount(int age)
+        {
+            if (age >= 18)
+            {
+
+                return true;
+            }
+
+            else
+            {
+                return false;
+            }
+        }
         // 5. Create a method called GetFirstName that accepts a string representing a full name (e.g. "John Smith"), and returns only the first name.
+        public static string GetFirstName(string fullName)
+        {
+            var names = fullName.Split(' ');
+            string firstName = names[0];
+            string lastName = names[1];
+            return firstName;
+        }
         // 6. Create a method called ReverseStringHard that accepts a string and returns the string in reverse. (No built in functions allowed)
+        public static string ReverseStringHard(string hard)
+        {
+            string input = hard;
+            string output = "";
+            for (int i = input.Length - 1; i >= 0; i--)
+            {
+                output += input[i];
+            }
+            return output;
+        }
         // 7. Create a method called ReverseStringEasy that accepts a string and returns the string in reverse. (Using only built in functions)
+        public static string ReverseStringEasy(string easy)
+        {
+            char[] charArray = easy.ToCharArray();
+            Array.Reverse(charArray);
+            return new string(charArray);
+        }
         // 8. Create a method called PrintTimesTable that accepts an integer and returns the times table as a string for that number up to the 10th multiplication.
         /* e.g. 10 should return
          * 10 * 1 = 10
@@ -36,10 +87,47 @@ namespace CSharpExercises
          * 10 * 8 = 80
          * 10 * 9 = 90
          * 10 * 10 = 10 */
+        public static string PrintTimesTable(int number)
+        {
+            string table = "";
+            for (int i = 1; i < 10; i++)
+            {
+                table += number + " * " + i + " = " + (number * i) + "/r/n";
+            }
+            table += number + " * " + 10 + " = " + (number * 10);
+            return table;
+        }
 
-        // 9. Create a method called ConvertKelvinToFahrenheit that accepts a double representing a temperature in kelvin and returns a double containing the temperature in Fahrenheit.
+        // 9. Create a method called ConvertKelvinFahrenheit that accepts a double representing a temperature in kelvin and returns a double containing the temperature in Fahrenheit.
+        public static double ConvertKelvinFahrenheit(double k)
+        {
+            double f = (9.0 / 5.0) * (k - 273.5) + 32.0;
+            return f = Math.Round(k, 2);
+
+        }
+
         // 10. Create a method called GetAverageHard that accepts an array of integers and returns the average value as a double. (No built in functions allowed)
+        public static double GetAverageHard(int[] avg)
+        {
+            double sum = 0;
+            double average = 0;
+            for (int i = 0; i < avg.Length; i++)
+            {
+
+                sum += avg[i];
+
+            }
+            average = sum / avg.Length;
+            return average;
+        }
+
         // 11. Create a method called GetAverageEasy that accepts an array of integers and returns the average value as a double. (Using only built in functions)
+        public static double GetAverageEasy(int[] avg)
+        {
+
+            return avg.Average();
+        }
+
         // 12. Create a method called DrawTriangle that accepts two integers - number and width and returns a string containing a drawn triangle using the number parameter.
         /* e.g. Number: 8, Width: 8 should return
          * 88888888
@@ -50,20 +138,120 @@ namespace CSharpExercises
          * 888
          * 88
          * 8 */
-
+        public static string DrawTriangle(int number, int width)
+        {
+            string returnString = "";
+            for (var i = width; i >= 0; i--)
+            {
+                for (var x = i; x >= 1; x--)
+                {
+                    returnString += number.ToString();
+                }
+                if (i >= 2)
+                {
+                    returnString += System.Environment.NewLine;
+                }
+            }
+            return returnString;
+        }
         // 13. Create a method called GetMilesPerHour that accepts a double representing distance and three integers representing hours, minutes and seconds. The method should return the speed in MPH rounded to the nearest whole number as a string. (e.g. "55MPH")
-
+        public static string GetMilesPerHour(double miles, int hours, int minutes, int seconds)
+        {
+            //Create an empty milesPerHour string;
+            string milesPerHour = "";
+            double average = 0;
+            average = miles / (hours + (minutes / 60.00) + (seconds / 3600.00));
+            average = (int)(average + 0.5);
+            return milesPerHour = average + "MPH";
+        }
 
         // 14. Create a method called IsVowel that accepts a char parameter and returns true if the parameter is a vowel or false if the parameter is a consonant.
+        public static bool IsVowel(char abc)
+        {
+            if (abc == 'a' || abc == 'e' || abc == 'i' || abc == 'o' || abc == 'u')
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         // 15. Create a method called IsConsonant that accepts a char parameter and returns true if the parameter is a consonant or false if the parameter is a vowel.
-        // 16. The Collatz conjecture, named after Lothar Collatz of Germany, proposed the following conjecture in 1937. 
-        // Beginning with an integer n > 1, repeat the following until n == 1. If n is even, halve it. If n is odd, triple it and add 1. Following these steps, the function will always arrive at the number 1.
-        // Create a method called CollatzConjecture that accepts an integer and returns the number of steps required to get to n == 1 as an integer.
+        public static bool ISConsonant(char con)
+        {
+            return !IsVowel(con);
+        }
+
+        // 16. The Collatz conjecture, named after Lothar Collatz of Germany, proposed the following conjecture in 1937. // Beginning with an integer n > 1, repeat the following until n == 1. If n is even, halve it. If n is odd, triple it and add 1. Following these steps, the function will always arrive at the number 1.
+        // Create a method called CollatzConjecture that accepts an integer and returns the number of steps required to get to n == 1 as an integer
+        public static int CollatzConjecture(int n)
+        {
+            int step = 0;
+            while (n > 1)
+            {
+                if (n % 2 == 0)
+                {
+                    //n is equal to n divided by 2.
+                    n /= 2;
+                }
+                else
+                {
+                    //f n is odd, triple it and add 1.
+                    n = (n * 3) + 1;
+                }
+                step++;
+
+            }
+            return step;
+
+        }
 
         // 17. Create a method called GetNext7Days that accepts a DateTime object and returns an array of DateTime objects containing the next 7 days (including the given day).
+        public static DateTime[] GetNext7Days(DateTime day)
+        {
+            DateTime[] dayList = new DateTime[7];
+            for (int i = 0; i < 7; i++)
+            {
+                dayList[i] = day.AddDays(i);
+            }
+            //return the dayList array.
+            return dayList;
+        }
+
         // 18. Create a method called IsInLeapYear that accepts a DateTime object and returns true if the date falls within a leap year and false if not. (No built in functions allowed)
-        // 19. Create a method called MortgageCalculator that accepts 2 decimals representing loan balance and interest rate, an integer representing loan term in years, and an integer representing the payment period.
+        public static bool IsInLeapYear(int year)
+        {
+            if (year % 4 == 0)
+            {
+                if (year % 100 == 0)
+                {
+                    if (year % 400 == 0)
+                    {
+                        //Return true for Leap Year.
+                        return true;
+                    }
+                    //Return false for not a Leap Year.
+                    return false;
+                }
+                // If not divisible by 100 then it's a Leap Year .
+                return true;
+            }
+            return false;
+        }
+        // 19. Create a method called MortgageCalculator that accepts 2 decimals representing loan balance and interest rate, an
+        //integer representing loan term in years, and an integer representing the payment period.
         /* Payment periods: 1 - Monthly, 2 - Bi-Monthly (Every 2 months) */
+        public static double MortgageCalculator(double loanBal, double intRate, int termYrs, int payPer)
+        {
+            double payment = 0;
+            double ratePer = (intRate / 100) / payPer;
+            double periods = termYrs * payPer;
+            payment = loanBal * (ratePer * Math.Pow(1 + ratePer, periods)) / (Math.Pow(1 + ratePer, periods) - 1);
+            return (Math.Round(payment, 2));
+        }
+
 
         // 20. Create a method called DuckGoose that accepts an integer. Iterate from 1 to this integer, building a string along the way.
         // If the current number in the iteration:
@@ -93,7 +281,41 @@ namespace CSharpExercises
          * 19
          * Goose
          */
-
-        // If you've finished all these challenges, sign up for CodeWars.com and try to complete a few C# challenges there!
+        public static string DuckGoose(int iterate)
+        {
+         string outPut = "";
+         for (int i = 1; i <= iterate; i++)
+            { 
+            if (i % 3 ==0 && i % 5 ==0)
+            {
+                outPut += "DuckGoose";
+            }
+            else if (i % 5 == 0)
+            {
+                outPut += "Goose";
+            }
+            else if (i % 3 == 0)
+            {
+                outPut += "Duck";
+            }
+            else
+            {
+                outPut += i;
+            }
+            if (i < iterate)
+            {
+                          outPut += "\r\n";
+            }
+        }
+                return outPut;
     }
-}
+    
+        // If you've finished all these challenges, sign up for CodeWars.com and try to complete a few C# challenges there!
+        }
+    
+    
+    }
+
+    public class average
+    {
+    }
